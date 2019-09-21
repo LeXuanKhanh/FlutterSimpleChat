@@ -1,10 +1,18 @@
-# flutter_chat_final
+# flutter_simple_chat
 
-A simple basic flutter chat app with offer some basic features .
+A simple basic flutter chat app with some basic features:
 
-This is a AndroidX migrating of Flutter Simple Chat so if someone use my previous Flutter Simple Chat project it work the same.
+- Create, delete a room, with or without password
+- Send chat messages
+- Add,delete and chat with friends
+- Create notification with specific time (work only for Android)
+- Basic authiencation with gmail
+- User chat statistic
+- Using firebase realtime database
 
 ## Getting Started
+
+- Since my project use firebase, to use thImplement your own firebase config in android or ios ( google will show you how :) )
 
 This project is a starting point for a Flutter application.
 
