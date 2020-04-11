@@ -31,7 +31,10 @@ class MyApp extends StatelessWidget {
             title: 'Ứng Dụng Chat Flutter',
             debugShowCheckedModeBanner: false,
             theme: theme,
-            home: AppWithDrawer(),
+            home: GestureDetector(
+                onTap: () => FocusScope.of(context).unfocus(),
+                child: AppWithDrawer()
+            ),
           );
         },
       ),

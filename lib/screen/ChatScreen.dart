@@ -199,18 +199,21 @@ class _MyState extends State<ChatScreen> {
                   children: <Widget>[
                     Text('Đăng nhập với tên ${model.user.username}'),
                     Expanded(
-                        child: FirebaseAnimatedList(
-                          defaultChild: Center(child: CircularProgressIndicator()),
-                          query: model.refChat,
-                          padding: const EdgeInsets.all(5.0),
-                          reverse: true,
-                          sort: (a,b) => b.key.compareTo(a.key),
-                          itemBuilder: (BuildContext context, DataSnapshot messageSnapshot, Animation<double> animation, int index){
-                            return new ChatMessageListItem(
-                              messageSnapshot: messageSnapshot,
-                              animation: animation,
-                              currentUserName: model.user.username,);
-                          },
+                        child: GestureDetector(
+                          onTap: () => FocusScope.of(context).unfocus(),
+                          child: FirebaseAnimatedList(
+                            defaultChild: Center(child: CircularProgressIndicator()),
+                            query: model.refChat,
+                            padding: const EdgeInsets.all(5.0),
+                            reverse: true,
+                            sort: (a,b) => b.key.compareTo(a.key),
+                            itemBuilder: (BuildContext context, DataSnapshot messageSnapshot, Animation<double> animation, int index){
+                              return new ChatMessageListItem(
+                                messageSnapshot: messageSnapshot,
+                                animation: animation,
+                                currentUserName: model.user.username,);
+                            },
+                          ),
                         )
                     ),
                     Divider(height: 1.0),
