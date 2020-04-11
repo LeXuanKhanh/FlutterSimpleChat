@@ -214,24 +214,27 @@ class _MyState extends State<ChatScreen> {
                         )
                     ),
                     Divider(height: 1.0),
-                    ListTile(
-                      title: TextField(
-                        controller: _chatController,
-                        decoration: InputDecoration(
-                            hintText: 'mời nhập tin nhắn'
+                    SafeArea(
+                      maintainBottomViewPadding: false,
+                      child: ListTile(
+                        title: TextField(
+                          controller: _chatController,
+                          decoration: InputDecoration(
+                              hintText: 'mời nhập tin nhắn'
+                          ),
+                          maxLines: null,
                         ),
-                        maxLines: null,
+                        trailing: IconButton(
+                            icon: Icon(Icons.send),
+                            onPressed: (){
+                              setState(() {
+                                if(_chatController.text.isNotEmpty){
+                                  model.addChatMessage(context,_chatController.text);
+                                  _chatController.clear();
+                                }
+                              });
+                            }),
                       ),
-                      trailing: IconButton(
-                          icon: Icon(Icons.send),
-                          onPressed: (){
-                            setState(() {
-                              if(_chatController.text.isNotEmpty){
-                                model.addChatMessage(context,_chatController.text);
-                                _chatController.clear();
-                              }
-                            });
-                          }),
                     ),
                   ],
                 ),
