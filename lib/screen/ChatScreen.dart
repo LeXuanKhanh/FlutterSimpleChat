@@ -199,39 +199,45 @@ class _MyState extends State<ChatScreen> {
                   children: <Widget>[
                     Text('Đăng nhập với tên ${model.user.username}'),
                     Expanded(
-                        child: FirebaseAnimatedList(
-                          defaultChild: Center(child: CircularProgressIndicator()),
-                          query: model.refChat,
-                          padding: const EdgeInsets.all(5.0),
-                          reverse: true,
-                          sort: (a,b) => b.key.compareTo(a.key),
-                          itemBuilder: (BuildContext context, DataSnapshot messageSnapshot, Animation<double> animation, int index){
-                            return new ChatMessageListItem(
-                              messageSnapshot: messageSnapshot,
-                              animation: animation,
-                              currentUserName: model.user.username,);
-                          },
+                        child: GestureDetector(
+                          onTap: () => FocusScope.of(context).unfocus(),
+                          child: FirebaseAnimatedList(
+                            defaultChild: Center(child: CircularProgressIndicator()),
+                            query: model.refChat,
+                            padding: const EdgeInsets.all(5.0),
+                            reverse: true,
+                            sort: (a,b) => b.key.compareTo(a.key),
+                            itemBuilder: (BuildContext context, DataSnapshot messageSnapshot, Animation<double> animation, int index){
+                              return new ChatMessageListItem(
+                                messageSnapshot: messageSnapshot,
+                                animation: animation,
+                                currentUserName: model.user.username,);
+                            },
+                          ),
                         )
                     ),
                     Divider(height: 1.0),
-                    ListTile(
-                      title: TextField(
-                        controller: _chatController,
-                        decoration: InputDecoration(
-                            hintText: 'mời nhập tin nhắn'
+                    SafeArea(
+                      maintainBottomViewPadding: false,
+                      child: ListTile(
+                        title: TextField(
+                          controller: _chatController,
+                          decoration: InputDecoration(
+                              hintText: 'mời nhập tin nhắn'
+                          ),
+                          maxLines: null,
                         ),
-                        maxLines: null,
+                        trailing: IconButton(
+                            icon: Icon(Icons.send),
+                            onPressed: (){
+                              setState(() {
+                                if(_chatController.text.isNotEmpty){
+                                  model.addChatMessage(context,_chatController.text);
+                                  _chatController.clear();
+                                }
+                              });
+                            }),
                       ),
-                      trailing: IconButton(
-                          icon: Icon(Icons.send),
-                          onPressed: (){
-                            setState(() {
-                              if(_chatController.text.isNotEmpty){
-                                model.addChatMessage(context,_chatController.text);
-                                _chatController.clear();
-                              }
-                            });
-                          }),
                     ),
                   ],
                 ),

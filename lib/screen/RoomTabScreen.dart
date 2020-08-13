@@ -46,23 +46,25 @@ class _MyState extends State<RoomTabScreen> with SingleTickerProviderStateMixin 
         // set the color of the bottom navigation bar
         color: Theme.of(context).primaryColor,
         // set the tab bar as the child of bottom navigation bar
-        child: new TabBar(
-          tabs: <Tab>[
-            new Tab(
-              child: Text('Tất Cả',style: _textStyle)
-            ),
-            new Tab(
-              child: Text('Của Tôi',style: _textStyle)
-            ),
-            new Tab(
-              child: Text('Đã Vào',style: _textStyle)
-            ),
-            new Tab(
-              child: Text('Bạn Bè',style: _textStyle)
-            )
-          ],
-          // setup the controller
-          controller: controller,
+        child: SafeArea(
+          child: new TabBar(
+            tabs: <Tab>[
+              new Tab(
+                child: Text('Tất Cả',style: _textStyle)
+              ),
+              new Tab(
+                child: Text('Của Tôi',style: _textStyle)
+              ),
+              new Tab(
+                child: Text('Đã Vào',style: _textStyle)
+              ),
+              new Tab(
+                child: Text('Bạn Bè',style: _textStyle)
+              )
+            ],
+            // setup the controller
+            controller: controller,
+          ),
         ),
       ),
     );

@@ -86,6 +86,7 @@ class _MyState extends State<AppWithDrawer> with WidgetsBindingObserver {
         AppQuery.Instance().setStatus('online');
       }
       else
+<<<<<<< HEAD
 //        if (state == AppLifecycleState.suspending){
 //          AppQuery.Instance().setStatus('offline');
 //        }
@@ -93,6 +94,15 @@ class _MyState extends State<AppWithDrawer> with WidgetsBindingObserver {
 //          if (state == AppLifecycleState.paused){
 //            AppQuery.Instance().setStatus('offline');
 //          }
+=======
+        if (state == AppLifecycleState.detached){
+          //AppQuery.Instance().setStatus('offline');
+        }
+        else
+          if (state == AppLifecycleState.paused){
+            AppQuery.Instance().setStatus('offline');
+          }
+>>>>>>> cb0d75a638107187dcbceffcfc6892417f83dc36
   }
 
   Future<bool> _onWillPop() {
